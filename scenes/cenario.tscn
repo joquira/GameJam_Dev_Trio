@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://mynjb51fp0kn"]
 
-[ext_resource type="Texture2D" path="res://assets/tiles/sheet.png" id="1_i5ouh"]
+[ext_resource type="Texture2D" uid="uid://blru6hitujur5" path="res://assets/tiles/sheet.png" id="1_i5ouh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2p5gn"]
 texture = ExtResource("1_i5ouh")
@@ -202,10 +202,10 @@ layer_0/tile_data = PackedInt32Array(1179648, 458752, 0, 1179649, 524288, 0, 117
 
 [node name="Platforms" type="Node2D" parent="." unique_id=782486552]
 
-[node name="@StaticBody2D@4" type="StaticBody2D" parent="Platforms" unique_id=903188516]
+[node name="_StaticBody2D_4" type="StaticBody2D" parent="Platforms" unique_id=903188516]
 position = Vector2(416, 592)
 
-[node name="@CollisionShape2D@3" type="CollisionShape2D" parent="Platforms/@StaticBody2D@4" unique_id=625305297]
+[node name="@CollisionShape2D@3" type="CollisionShape2D" parent="Platforms/_StaticBody2D_4" unique_id=625305297]
 shape = SubResource("RectangleShape2D_kfbu0")
 
 [node name="@StaticBody2D@6" type="StaticBody2D" parent="Platforms" unique_id=314213206]
