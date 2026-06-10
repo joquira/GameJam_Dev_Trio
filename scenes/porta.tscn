@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/porta.gd" id="1_porta"]
+[ext_resource type="Texture2D" uid="uid://blru6hitujur5" path="res://assets/tiles/sheet.png" id="2_sheet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_porta"]
+size = Vector2(56, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_porta"]
+atlas = ExtResource("2_sheet")
+region = Rect2(64, 64, 16, 32)
+
+[node name="Porta" type="Area2D" groups=["portas"]]
+script = ExtResource("1_porta")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_porta")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -54)
+texture_filter = 1
+texture = SubResource("AtlasTexture_porta")
+scale = Vector2(3.5, 3.5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

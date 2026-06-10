@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/power_up_pulo.gd" id="1_power"]
+[ext_resource type="Texture2D" uid="uid://blru6hitujur5" path="res://assets/tiles/sheet.png" id="2_sheet"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_power"]
+radius = 18.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_power"]
+atlas = ExtResource("2_sheet")
+region = Rect2(128, 80, 16, 16)
+
+[node name="PowerUpPulo" type="Area2D" groups=["powerups"]]
+script = ExtResource("1_power")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_power")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_power")
+scale = Vector2(2.5, 2.5)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

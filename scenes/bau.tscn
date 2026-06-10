@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/bau.gd" id="1_bau"]
+[ext_resource type="Texture2D" uid="uid://blru6hitujur5" path="res://assets/tiles/sheet.png" id="2_sheet"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bau"]
+size = Vector2(38, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bau"]
+atlas = ExtResource("2_sheet")
+region = Rect2(224, 64, 16, 16)
+
+[node name="Bau" type="Area2D" groups=["baus"]]
+script = ExtResource("1_bau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bau")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_bau")
+scale = Vector2(2.4, 2.4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

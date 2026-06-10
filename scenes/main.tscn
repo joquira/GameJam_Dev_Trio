@@ -1,10 +1,16 @@
-[gd_scene format=3 uid="uid://traxdoor001"]
+[gd_scene load_steps=9 format=3 uid="uid://traxdoor001"]
 
 [ext_resource type="Script" uid="uid://c76jks3qx44bm" path="res://scripts/game.gd" id="1_game"]
-[ext_resource type="Script" uid="uid://c1bxa7xbcqfma" path="res://scripts/player.gd" id="2_player"]
+[ext_resource type="Texture2D" uid="uid://blru6hitujur5" path="res://assets/tiles/sheet.png" id="2_sheet"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/bau.tscn" id="4_bau"]
+[ext_resource type="PackedScene" path="res://scenes/power_up_pulo.tscn" id="5_power"]
+[ext_resource type="PackedScene" path="res://scenes/inimigo.tscn" id="6_enemy"]
+[ext_resource type="PackedScene" path="res://scenes/porta.tscn" id="7_porta"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
-size = Vector2(30, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hud_bau"]
+atlas = ExtResource("2_sheet")
+region = Rect2(224, 64, 16, 16)
 
 [node name="Main" type="Node2D" unique_id=1892243586]
 script = ExtResource("1_game")
@@ -21,30 +27,44 @@ format = 2
 
 [node name="Actors" type="Node2D" parent="." unique_id=1388842532]
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1221265243]
+[node name="Bau1" parent="Actors" instance=ExtResource("4_bau")]
+position = Vector2(1510, 304)
+
+[node name="Bau2" parent="Actors" instance=ExtResource("4_bau")]
+position = Vector2(2370, 200)
+
+[node name="PowerUpPulo" parent="Actors" instance=ExtResource("5_power")]
+position = Vector2(1430, 304)
+
+[node name="Inimigo1" parent="Actors" instance=ExtResource("6_enemy")]
+position = Vector2(1190, 520)
+left_limit = 1060.0
+right_limit = 1410.0
+
+[node name="Inimigo2" parent="Actors" instance=ExtResource("6_enemy")]
+position = Vector2(2070, 520)
+left_limit = 1850.0
+right_limit = 2250.0
+
+[node name="PortaFinal" parent="Actors" instance=ExtResource("7_porta")]
+position = Vector2(3180, 576)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
 position = Vector2(96, 480)
-script = ExtResource("2_player")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=734407825]
-position = Vector2(0, -26)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1343773663]
-position = Vector2(0, -24)
-shape = SubResource("RectangleShape2D_player")
-
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=598732555]
-position = Vector2(250, -120)
-limit_left = 0
-limit_top = 0
-limit_right = 3450
-limit_bottom = 720
-position_smoothing_enabled = true
-position_smoothing_speed = 6.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=80478238]
 
-[node name="HUD" type="Label" parent="CanvasLayer" unique_id=946316459]
+[node name="HUDIcon" type="TextureRect" parent="CanvasLayer"]
 offset_left = 18.0
+offset_top = 12.0
+offset_right = 52.0
+offset_bottom = 46.0
+texture_filter = 1
+texture = SubResource("AtlasTexture_hud_bau")
+stretch_mode = 5
+
+[node name="HUD" type="Label" parent="CanvasLayer" unique_id=946316459]
+offset_left = 58.0
 offset_top = 14.0
 offset_right = 1040.0
 offset_bottom = 52.0
