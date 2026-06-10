@@ -13,12 +13,13 @@ func _initialize() -> void:
 	await physics_frame
 
 	var player: Node = main.get_node_or_null("Player")
-	var tile_map: Node = main.get_node_or_null("LevelTiles")
+	var cenario: Node = main.get_node_or_null("Cenario")
+	var tile_map: Node = main.get_node_or_null("Cenario/LevelTiles")
 	var hud: Label = main.get_node_or_null("CanvasLayer/HUD")
-	if player == null or tile_map == null or hud == null:
+	if player == null or cenario == null or tile_map == null or hud == null:
 		push_error("Required gameplay nodes are missing.")
 		quit(1)
 		return
 
-	print("SMOKE_OK player=%s tile_map=%s hud=%s" % [player.name, tile_map.name, hud.text])
+	print("SMOKE_OK player=%s cenario=%s tile_map=%s hud=%s" % [player.name, cenario.name, tile_map.name, hud.text])
 	quit()

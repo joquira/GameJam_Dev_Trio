@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://traxdoor001"]
+[gd_scene load_steps=10 format=3 uid="uid://traxdoor001"]
 
 [ext_resource type="Script" uid="uid://c76jks3qx44bm" path="res://scripts/game.gd" id="1_game"]
 [ext_resource type="Texture2D" uid="uid://blru6hitujur5" path="res://assets/tiles/sheet.png" id="2_sheet"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://scenes/power_up_pulo.tscn" id="5_power"]
 [ext_resource type="PackedScene" path="res://scenes/inimigo.tscn" id="6_enemy"]
 [ext_resource type="PackedScene" path="res://scenes/porta.tscn" id="7_porta"]
+[ext_resource type="PackedScene" path="res://scenes/cenario.tscn" id="8_cenario"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hud_bau"]
 atlas = ExtResource("2_sheet")
@@ -15,15 +16,7 @@ region = Rect2(224, 64, 16, 16)
 [node name="Main" type="Node2D" unique_id=1892243586]
 script = ExtResource("1_game")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1360724060]
-offset_right = 4200.0
-offset_bottom = 720.0
-color = Color(0.0823529, 0.0941176, 0.152941, 1)
-
-[node name="LevelTiles" type="TileMap" parent="." unique_id=115927416]
-format = 2
-
-[node name="Platforms" type="Node2D" parent="." unique_id=1505132959]
+[node name="Cenario" parent="." instance=ExtResource("8_cenario")]
 
 [node name="Actors" type="Node2D" parent="." unique_id=1388842532]
 
