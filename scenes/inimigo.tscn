@@ -14,6 +14,7 @@ atlas = ExtResource("2_characters")
 region = Rect2(0, 32, 32, 32)
 
 [node name="Inimigo" type="CharacterBody2D"]
+floor_snap_length = 10.0
 script = ExtResource("1_enemy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -25,7 +26,7 @@ shape = SubResource("RectangleShape2D_enemy")
 shape = SubResource("RectangleShape2D_damage")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -30)
+position = Vector2(0, -14)
 texture_filter = 1
 texture = SubResource("AtlasTexture_enemy")
 scale = Vector2(1.7, 1.7)

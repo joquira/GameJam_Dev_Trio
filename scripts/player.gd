@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal respawned
+
 const WALK_SPEED := 210.0
 const RUN_SPEED := 320.0
 const JUMP_FORCE := -500.0
@@ -24,6 +26,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if not controls_enabled:
+		velocity = Vector2.ZERO
+		_update_animation(0.0, WALK_SPEED)
 		return
 
 	var direction := Input.get_axis("move_left", "move_right")
@@ -49,6 +53,7 @@ func _physics_process(delta: float) -> void:
 func respawn() -> void:
 	global_position = spawn_position
 	velocity = Vector2.ZERO
+	respawned.emit()
 
 func ativar_pulo_alto() -> void:
 	pulo_alto = true
