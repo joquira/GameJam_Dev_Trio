@@ -6,9 +6,6 @@ const WALK_SPEED := 210.0
 const RUN_SPEED := 320.0
 const JUMP_FORCE := -500.0
 const HIGH_JUMP_FORCE := -760.0
-const FRAME_SIZE := Vector2i(32, 32)
-const CHARACTER_ROW := 0
-const CHARACTER_SHEET := preload("res://assets/sprites/characters.png")
 
 var gravity := 1250.0
 var jump_force := JUMP_FORCE
@@ -22,7 +19,7 @@ func _ready() -> void:
 	spawn_position = global_position
 	sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.scale = Vector2(2.0, 2.0)
-	_setup_animations()
+	sprite.play("idle")
 
 func _physics_process(delta: float) -> void:
 	if not controls_enabled:
@@ -72,35 +69,3 @@ func _update_animation(direction: float, target_speed: float) -> void:
 		sprite.play("walk")
 	else:
 		sprite.play("idle")
-
-func _setup_animations() -> void:
-	var frames := SpriteFrames.new()
-	frames.add_animation("idle")
-	frames.add_animation("walk")
-	frames.add_animation("run")
-	frames.add_animation("jump")
-
-	frames.set_animation_speed("idle", 4.0)
-	frames.set_animation_speed("walk", 8.0)
-	frames.set_animation_speed("run", 12.0)
-	frames.set_animation_speed("jump", 1.0)
-
-	frames.add_frame("idle", _frame(0))
-	frames.add_frame("idle", _frame(1))
-	frames.add_frame("idle", _frame(2))
-
-	for column in [5, 6, 7, 8, 9, 10]:
-		frames.add_frame("walk", _frame(column))
-
-	for column in [11, 12, 13, 14, 15, 16]:
-		frames.add_frame("run", _frame(column))
-
-	frames.add_frame("jump", _frame(17))
-	sprite.sprite_frames = frames
-	sprite.play("idle")
-
-func _frame(column: int) -> AtlasTexture:
-	var texture := AtlasTexture.new()
-	texture.atlas = CHARACTER_SHEET
-	texture.region = Rect2(column * FRAME_SIZE.x, CHARACTER_ROW * FRAME_SIZE.y, FRAME_SIZE.x, FRAME_SIZE.y)
-	return texture

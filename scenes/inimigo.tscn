@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_enemy"]
 [ext_resource type="Texture2D" uid="uid://cq3f6qqsnmlmx" path="res://assets/sprites/characters.png" id="2_characters"]
@@ -9,9 +9,41 @@ size = Vector2(34, 28)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_damage"]
 size = Vector2(42, 36)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_enemy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_enemy_walk_0"]
 atlas = ExtResource("2_characters")
 region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enemy_walk_1"]
+atlas = ExtResource("2_characters")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enemy_walk_2"]
+atlas = ExtResource("2_characters")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enemy_walk_3"]
+atlas = ExtResource("2_characters")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enemy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enemy_walk_0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enemy_walk_1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enemy_walk_2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enemy_walk_3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [node name="Inimigo" type="CharacterBody2D"]
 floor_snap_length = 10.0
@@ -25,10 +57,12 @@ shape = SubResource("RectangleShape2D_enemy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 shape = SubResource("RectangleShape2D_damage")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14)
 texture_filter = 1
-texture = SubResource("AtlasTexture_enemy")
+sprite_frames = SubResource("SpriteFrames_enemy")
+animation = &"walk"
+autoplay = "walk"
 scale = Vector2(1.7, 1.7)
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_body_entered"]
